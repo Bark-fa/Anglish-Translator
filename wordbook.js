@@ -8,7 +8,6 @@ like in the case of a cappella, which is why the word is written as acappella in
 */
 
 
-
 var wordbook = {
     'acappella': 'mouthglee',
     'acappellas': 'mouthglees',

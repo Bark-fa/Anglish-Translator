@@ -96,9 +96,6 @@ window.onload = function () {
         englishWords.forEach((word, index) => {
 
             if (index in keys) {
-                console.log(index);
-                console.log(keys);
-                console.log(specialCharactersIndex)
                 englishWords[keys[index]] += specialCharactersIndex[keys[index]][0][0];
             }
         });

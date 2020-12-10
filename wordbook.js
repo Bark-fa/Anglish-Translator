@@ -1812,7 +1812,7 @@ var wordbook = {
     "coverup": "whitewash",
     "covet": "crave",
     "covetous": "greedy",
-    "COVID": "GABAS",
+    "covid": "GABAS",
     "coward": "wimp",
     "cowardly": "gutless",
     "coworker": "byworker",

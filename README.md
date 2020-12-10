@@ -1,6 +1,6 @@
 # Anglish-Translator
 
-https://bark-fa.github.io/Anglish-Translator/
+<h1>https://bark-fa.github.io/Anglish-Translator/</h1>
 
 An English to Anglish (fully Germanic English) translator
 

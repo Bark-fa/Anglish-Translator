@@ -14,7 +14,7 @@ window.onload = function () {
     const english = document.getElementById("english")
     const anglish = document.getElementById("anglish")
     const vowels = ['a', 'e', 'i', 'o', 'u'];
-    const specialCharacters = /[ `!@#$%^&*,.;?~]/;
+    const specialCharacters = /[ `!@#$%^&*,.;?~()]/;
 
     translateToAnglish = function () {
 
@@ -39,7 +39,7 @@ window.onload = function () {
                 Object.assign(specialCharactersIndex, {
                     [index]: [character]
                 });
-                englishWords[index] = word.replace(/[ `!@#$%^&*,.;?~]/g, '');
+                englishWords[index] = word.replace(/[ `!@#$%^&*,.;?~()]/g, '');
 
             }
 
@@ -49,7 +49,7 @@ window.onload = function () {
 
 
         /* Check for special words (words that have spaces in them) by adding the index, plus word after it and checking for them in the special-words.js file, if that didn't work check to see if the index and the TWO words after it exist....yeah it's retarded I know */
-        
+
         // I'm 99% sure there must be a better way to do this.
         englishWords.forEach((word, index) => {
 
@@ -59,11 +59,11 @@ window.onload = function () {
                 englishWords[index + 1] = "";
 
             } else if (englishWords[index] + " " + englishWords[index + 1] + " " + englishWords[index + 2] in words) {
-                
+
                 englishWords[index] = words[englishWords[index] + " " + englishWords[index + 1] + " " + englishWords[index + 2]];
-                englishWords[index + 1] = "";  
+                englishWords[index + 1] = "";
                 englishWords[index + 2] = "";
-                
+
             }
         });
 
@@ -98,11 +98,28 @@ window.onload = function () {
         });
 
 
-        // Re-add special characters
+        // Re-add special characters according to their position in the original text, if the character was the first, it's added to the beginning, esle it is added to the end of the word.
         englishWords.forEach((word, index) => {
 
             if (index in keys) {
-                englishWords[keys[index]] += specialCharactersIndex[keys[index]][0][0];
+
+                word = englishWords[keys[index]];
+                let wordWithCharacters = word;
+
+                if (specialCharactersIndex[keys[index]][0]['index'] == 0) {
+
+                    wordWithCharacters = [...word];
+                    wordWithCharacters[0] = specialCharactersIndex[keys[index]][0][0] + wordWithCharacters[0];
+                    wordWithCharacters = wordWithCharacters.join('');
+
+                } else {
+
+                    wordWithCharacters += specialCharactersIndex[keys[index]][0][0];
+                }
+
+
+                englishWords[keys[index]] = wordWithCharacters;
+
             }
         });
 

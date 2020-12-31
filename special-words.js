@@ -59,4 +59,8 @@ words = {
     "nuclear weapon": "kernelweapon",
     "nutritional therapist": "greenmonger",
     "nutritional value": "wholesome worth",
+    "obsessive compulsive disorder": "brainlock",
+    "occipital bone": "skullend",
+      "old fashioned": "stickinthemud",
+  "Old Testament": "Old Bond",
 }

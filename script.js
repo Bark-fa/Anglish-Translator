@@ -98,7 +98,7 @@ window.onload = function () {
         });
 
 
-        // Re-add special characters according to their position in the original text, if the character was the first, it's added to the beginning, esle it is added to the end of the word.
+        // Re-add special characters according to their position in the original text, if the character was the first, it's added to the beginning, else it is added to the end of the word.
         englishWords.forEach((word, index) => {
 
             if (index in keys) {

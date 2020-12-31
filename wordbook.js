@@ -4669,6 +4669,7 @@ var wordbook = {
     "orientation": "akinting",
     "orifice": "hole",
     "origin": "root",
+    "origins": "roots",
     "original": "ere",
     "originally": "at first",
     "originate": "stem",

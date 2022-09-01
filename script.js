@@ -18,7 +18,7 @@ window.onload = function () {
 
     let translateToAnglish = true;
 
-    translate = function () {
+   document.getElementById('translate').onclick = function () {
 
         // Set up the variables.
         let inputText = input.value;

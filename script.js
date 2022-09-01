@@ -11,35 +11,37 @@ window.onload = function () {
 
     // set up the constants.
     const translateBtn = document.getElementById("translate")
-    const english = document.getElementById("english")
-    const anglish = document.getElementById("anglish")
+    const input = document.getElementById("input")
+    const output = document.getElementById("output")
     const vowels = ['a', 'e', 'i', 'o', 'u'];
     const specialCharacters = /[ `!@#$%^&*,.;?~()]/;
 
-    translateToAnglish = function () {
+    let translateToAnglish = true;
+
+    translate = function () {
 
         // Set up the variables.
-        let englishText = english.value;
-        let anglishText = ""
+        let inputText = input.value;
+        let outputText = ""
         let keys = [];
         let specialCharactersIndex = {};
 
 
-        // Split the English text into seperate words based on the space character, and make the text all lowercase.
-        let englishWords = englishText.split(" ").map(function (f) {
+        // Split the input text into seperate words based on the space character, and make the text all lowercase.
+        let inputWords = inputText.split(" ").map(function (f) {
             return f.toLowerCase();
         });
 
         // Check if word contains special characters, if so handle them.
 
-        englishWords.forEach((word, index) => {
+        inputWords.forEach((word, index) => {
 
             if (specialCharacters.test(word)) {
                 let character = word.match(specialCharacters);
                 Object.assign(specialCharactersIndex, {
                     [index]: [character]
                 });
-                englishWords[index] = word.replace(/[ `!@#$%^&*,.;?~()]/g, '');
+                inputWords[index] = word.replace(/[ `!@#$%^&*,.;?~()]/g, '');
 
             }
 
@@ -51,47 +53,78 @@ window.onload = function () {
         /* Check for special words (words that have spaces in them) by adding the index, plus word after it and checking for them in the special-words.js file, if that didn't work check to see if the index and the TWO words after it exist....yeah it's retarded I know */
 
         // I'm 99% sure there must be a better way to do this.
-        englishWords.forEach((word, index) => {
+        inputWords.forEach((word, index) => {
 
-            if (englishWords[index] + " " + englishWords[index + 1] in words) {
+            let twoWords = inputWords[index] + " " + inputWords[index + 1];
+            let threeWords = inputWords[index] + " " + inputWords[index + 1] + " " + inputWords[index + 2];
 
-                englishWords[index] = words[englishWords[index] + " " + englishWords[index + 1]];
-                englishWords[index + 1] = "";
+            if (translateToAnglish) {
+                // value by key (English->Anglish)
+                if (twoWords in words) {
 
-            } else if (englishWords[index] + " " + englishWords[index + 1] + " " + englishWords[index + 2] in words) {
+                    inputWords[index] = words[twoWords];
+                    inputWords[index + 1] = "";
 
-                englishWords[index] = words[englishWords[index] + " " + englishWords[index + 1] + " " + englishWords[index + 2]];
-                englishWords[index + 1] = "";
-                englishWords[index + 2] = "";
+                } else if (threeWords in words) {
+
+                    inputWords[index] = words[threeWords];
+                    inputWords[index + 1] = "";
+                    inputWords[index + 2] = "";
+
+                }
+
+            } else {
+                // key by value (Anglish->English)
+                if (Object.values(words).includes(twoWords)) {
+
+                    inputWords[index] = Object.keys(words).find(key => words[key] === twoWords);
+                    inputWords[index + 1] = "";
+
+                } else if (Object.values(words).includes(threeWords)) {
+
+                    inputWords[index] = Object.keys(words).find(key => words[key] === threeWords);
+                    inputWords[index + 1] = "";
+                    inputWords[index + 2] = "";
+                
+                }
 
             }
         });
 
 
 
-        // Check if an English word has an Anglish translation, if so swap the English word with its Anglish match.
-        englishWords.forEach((word, index) => {
+        // Check if an input word has a translation, if so swap the input word with its match.
+        inputWords.forEach((word, index) => {
 
-            if (word in wordbook) {
-                englishWords[index] = wordbook[word]
+            if (translateToAnglish) {
+                // value by key (English->Anglish)
+                if (word in wordbook) {
+                    inputWords[index] = wordbook[word]
+
+                }
+
+            } else {
+                // key by value (Anglish->English)
+                if (Object.values(wordbook).includes(word)) {
+                    inputWords[index] = Object.keys(wordbook).find(key => wordbook[key] === word)
+                }
 
             }
 
         });
-
 
         // Decide if "a" or "an" should be used.
-        englishWords.forEach((word, index) => {
+        inputWords.forEach((word, index) => {
 
             if (word.toLowerCase() == "an" || word.toLowerCase() == "a") {
 
-                if (englishWords[index + 1] != undefined && englishWords[index + 1][0] in vowels) {
+                if (inputWords[index + 1] != undefined && inputWords[index + 1][0] in vowels) {
 
-                    englishWords[index] = "an"
+                    inputWords[index] = "an"
 
                 } else {
 
-                    englishWords[index] = "a"
+                    inputWords[index] = "a"
                 }
             }
 
@@ -99,11 +132,11 @@ window.onload = function () {
 
 
         // Re-add special characters according to their position in the original text, if the character was the first, it's added to the beginning, else it is added to the end of the word.
-        englishWords.forEach((word, index) => {
+        inputWords.forEach((word, index) => {
 
             if (index in keys) {
 
-                word = englishWords[keys[index]];
+                word = inputWords[keys[index]];
                 let wordWithCharacters = word;
 
                 if (specialCharactersIndex[keys[index]][0]['index'] == 0) {
@@ -118,21 +151,21 @@ window.onload = function () {
                 }
 
 
-                englishWords[keys[index]] = wordWithCharacters;
+                inputWords[keys[index]] = wordWithCharacters;
 
             }
         });
 
         // Parse the translated words into a string, and add spacing between words.
-        englishWords.forEach((word, index) => {
+        inputWords.forEach((word, index) => {
 
             if (index == 0) {
 
-                anglishText += word;
+                outputText += word;
 
             } else {
 
-                anglishText += " " + word;
+                outputText += " " + word;
             }
 
         });
@@ -140,7 +173,26 @@ window.onload = function () {
 
 
         // Display the translated text.
-        anglish.textContent = capitaliseFirstLetter(anglishText);
+        output.textContent = capitaliseFirstLetter(outputText);
 
+    }
+
+    swap = function () {
+        translateToAnglish = !translateToAnglish;
+
+        if (translateToAnglish) {
+            translateBtn.value = "Translate to Anglish";
+            input.placeholder = "English goes here";
+            output.placeholder = "Anglish translation will show here";
+        } else {
+            translateBtn.value = "Translate to English";
+            input.placeholder = "Anglish goes here";
+            output.placeholder = "English translation will show here";
+        }
+
+        
+        let temp = input.value;
+        input.value = output.textContent;
+        output.textContent = temp;
     }
 }

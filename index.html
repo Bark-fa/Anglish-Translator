@@ -21,14 +21,15 @@
 
     <div class="text-container">
 
-        <div class="english-text">
-            <textarea id="english" cols="50" rows="20" placeholder="English goes here"></textarea>
-            <input type="button" id="translate" onClick="translateToAnglish()" value="Translate">
+        <div class="input-text">
+            <textarea id="input" cols="50" rows="20" placeholder="English goes here"></textarea>
+            <input type="button" class="btn" id="translate" value="Translate to Anglish">
+            <input type="button" class="btn" id="swap" onClick="swap()" value="Swap">
         </div>
 
 
-        <div class="anglish-text">
-            <textarea id="anglish" cols="50" rows="20" placeholder="Anglish translation will show here"></textarea>
+        <div class="output-text">
+            <textarea id="output" cols="50" rows="20" placeholder="Anglish translation will show here"></textarea>
         </div>
 
     </div>

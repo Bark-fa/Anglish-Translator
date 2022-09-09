@@ -1,4 +1,4 @@
-words = {
+var words = {
     "capital city": "headburg",
     "Feast day religious": "simbleday",
     "Feast of Tabernacles": "Simble of Ingathering",

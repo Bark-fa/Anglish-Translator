@@ -83,11 +83,11 @@ nav a:hover {
     margin-top: 12rem;
 }
 
-.english-text {
+.input-text {
     margin-right: 4rem;
 }
 
-#translate {
+.btn {
     display: block;
     background: #002147;
     color: #fff;

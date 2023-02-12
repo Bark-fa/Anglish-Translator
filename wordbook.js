@@ -3816,7 +3816,6 @@ var wordbook = {
     "irritate vex": "irk",
     "irritating": "irksome",
     "ischium": "seatbone",
-    "ise": "ledge",
     "isle": "island",
     "islet": "ait",
     "isobar": "evenweight isoeven  barweight",

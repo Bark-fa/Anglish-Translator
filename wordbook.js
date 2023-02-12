@@ -2995,7 +2995,7 @@ var wordbook = {
     "fine payment": "bote",
     "fine": "dusty",
     "finish": "ending",
-    "finished": "ready",
+    "finished": "done",
     "fireplace": "hearth",
     "firm": "fast",
     "firmament": "blue",

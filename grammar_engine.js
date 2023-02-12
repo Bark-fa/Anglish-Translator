@@ -49,11 +49,15 @@ function presentContinuous(word) {
     if (word != "") {
         if (word in wordbook) {
             word = wordbook[word] + "ing";
+            
         } else {
             
             if (word+"e" in wordbook){
+                
                 wordWithoutE = wordbook[word+"e"].substring(0, wordbook[word+"e"].length - 1)
                 word = wordWithoutE + "ing";
+            } else {
+                word = ""
             }
         }
     }

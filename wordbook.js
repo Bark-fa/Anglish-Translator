@@ -1970,6 +1970,7 @@ var wordbook = {
     "deception": "cheating",
     "deceptive": "cheatful",
     "decide": "choose",
+    "decided": "chose",
     "deciduous": "leafshedding",
     "decision": "call",
     "decisive": "allout",

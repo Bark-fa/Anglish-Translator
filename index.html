@@ -23,12 +23,14 @@
 
         <div class="english-text">
             <textarea id="english" cols="50" rows="20" placeholder="English goes here"></textarea>
-            <input type="button" id="translate" onClick="translateToAnglish()" value="Translate">
+            <span id="percentage" style="display: block;"></span>
+            <input type="button" id="translate" class="btn" onClick="translateToAnglish()" value="Translate to Anglish">
+            <input type="button" id="swap" class="btn" onClick="swap()" value="Swap">
         </div>
 
 
         <div class="anglish-text">
-            <textarea id="anglish" cols="50" rows="20" placeholder="Anglish translation will show here"></textarea>
+            <textarea id="anglish" cols="50" rows="20" readonly placeholder="Anglish translation will show here"></textarea>
         </div>
 
     </div>
@@ -47,7 +49,9 @@
     </div>
 
     <footer>A project by Bark Fa.</footer>
-    <script src="script.js"></script>
+    <script type='text/javascript' src='wordbook.js'></script>
+    <script type='text/javascript' src='grammar_engine.js'></script>
+    <script src="script.js" defer></script>
 
 </body>
 </html>

@@ -87,7 +87,7 @@ nav a:hover {
     margin-right: 4rem;
 }
 
-#translate {
+.btn {
     display: block;
     background: #002147;
     color: #fff;
@@ -100,7 +100,6 @@ nav a:hover {
     outline: none;
     margin-top: 5px;
 }
-
 #translate:hover {
     background: #003066
 }

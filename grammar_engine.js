@@ -17,7 +17,11 @@ function singulariseThenPluralise(word) {
         }
     }
 
-    return word;
+    if(word != "") {
+        return word;
+    } else {
+        return undefined;
+    }
 }
 
 function pluralise(word) {
@@ -29,7 +33,11 @@ function pluralise(word) {
         word = "";
     }
 
-    return word;
+    if(word != "") {
+        return word;
+    } else {
+        return undefined;
+    }
 }
 
 
@@ -42,12 +50,19 @@ function presentContinuous(word) {
         if (word in wordbook) {
             word = wordbook[word] + "ing";
         } else {
-           word = word + "e"
-           word = wordbook[word] + "ing";
+            
+            if (word+"e" in wordbook){
+                wordWithoutE = wordbook[word+"e"].substring(0, wordbook[word+"e"].length - 1)
+                word = wordWithoutE + "ing";
+            }
         }
     }
 
-    return word;
+    if(word != "") {
+        return word;
+    } else {
+        return undefined;
+    }
 }
 
 
@@ -66,7 +81,11 @@ function toPastTense(word) {
     } else {
         word = "";
     }
-    return word;
+    if(word != "") {
+        return word;
+    } else {
+        return undefined;
+    }
 }
 
 function toPresentTenseThenPastTense(word) {
@@ -95,5 +114,9 @@ function toPresentTenseThenPastTense(word) {
         }
     }
 
-    return word;
+    if(word != "") {
+        return word;
+    } else {
+        return undefined;
+    }
 }

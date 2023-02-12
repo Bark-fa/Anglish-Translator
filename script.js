@@ -60,7 +60,6 @@ window.onload = function () {
             if (translateToAnglish) {
                 // value by key (English->Anglish)
                 if (twoWords in wordbook) {
-
                     inputWords[index] = wordbook[twoWords];
                     inputWords[index + 1] = "";
 
@@ -93,24 +92,23 @@ window.onload = function () {
 
 
         // Check if an English word has an Anglish translation, if so swap the English word with its Anglish match.
-        inputWords.forEach((word, index) => {
-
-
-        });
 
         inputWords.forEach((word, index) => {
-
             if (translateToAnglish) {
                 // value by key (English->Anglish)
                 if (word in wordbook) {
                     inputWords[index] = wordbook[word];
-                } else if (singulariseThenPluralise(word) != undefined) {
-                    inputWords[index] = singulariseThenPluralise(word);
+                } else if (singulariseThenPluralise(word) != undefined && singulariseThenPluralise(word) != "") {
+                    
+                    inputWords[index] = singulariseThenPluralise(word) == "" ? inputWords[index] : singulariseThenPluralise(word);
                 } else if (toPresentTenseThenPastTense(word) != undefined) {
+                    console.log(inputWords[index])
                     inputWords[index] = toPresentTenseThenPastTense(word);   
                 } else if (presentContinuous(word) != undefined) {
-                    inputWords[index] = presentContinuous(word); 
+                    console.log(presentContinuous(word))
+                    inputWords[index] = presentContinuous(word);
                 } else {
+                    inputWords[index] = word
                     outputTextSize++;
                 }
 
@@ -123,6 +121,8 @@ window.onload = function () {
             }
 
         });
+
+
         // Decide if "a" or "an" should be used.
         inputWords.forEach((word, index) => {
 

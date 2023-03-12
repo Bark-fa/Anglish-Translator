@@ -6832,6 +6832,7 @@ var wordbook = {
     "urine": "wee",
     "urinate": "weeg",
     "ursa major": "The Plough",
+    "us": "us",
     "use": "brook",
     "make use of": "make worth of",
     "get used to": "wean",

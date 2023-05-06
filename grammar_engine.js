@@ -44,7 +44,10 @@ function pluralise(word) {
 function presentContinuous(word) {
     if (word.endsWith('ing')) {
         word = word.substring(0, word.length - 3);
-    } 
+    } else {
+        // not present continious;
+        return undefined;
+    }
 
     if (word != "") {
         if (word in wordbook) {
@@ -53,7 +56,6 @@ function presentContinuous(word) {
         } else {
             
             if (word+"e" in wordbook){
-                
                 wordWithoutE = wordbook[word+"e"].substring(0, wordbook[word+"e"].length - 1)
                 word = wordWithoutE + "ing";
             } else {

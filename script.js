@@ -99,13 +99,11 @@ window.onload = function () {
                 if (word in wordbook) {
                     inputWords[index] = wordbook[word];
                 } else if (singulariseThenPluralise(word) != undefined && singulariseThenPluralise(word) != "") {
-                    
-                    inputWords[index] = singulariseThenPluralise(word) == "" ? inputWords[index] : singulariseThenPluralise(word);
+                    console.log(`word in wordbook SINGULAR/PLURAL ${inputWords[index]} ${wordbook[word]}`)
                 } else if (toPresentTenseThenPastTense(word) != undefined) {
-                    console.log(inputWords[index])
-                    inputWords[index] = toPresentTenseThenPastTense(word);   
+                    console.log(`word in wordbook PRESENT ${inputWords[index]} ${wordbook[word]}`)
                 } else if (presentContinuous(word) != undefined) {
-                    console.log(presentContinuous(word))
+                    console.log(`word in wordbook PRESENT CONTINUOUS ${inputWords[index]} ${presentContinuous(word)}`)
                     inputWords[index] = presentContinuous(word);
                 } else {
                     inputWords[index] = word

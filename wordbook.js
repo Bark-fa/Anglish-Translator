@@ -3744,7 +3744,7 @@ var wordbook = {
     "intern": "inworker",
     "internal": "inland",
     "international": "worldwide",
-    "internet": "World Wide Web",
+    "internet": "linknet",
     "interpol": "worldwatcher",
     "interpret": "unriddle",
     "interpretation": "unriddling",

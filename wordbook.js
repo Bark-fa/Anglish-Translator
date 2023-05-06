@@ -5507,6 +5507,8 @@ var wordbook = {
     "pulse": "beat",
     "pumice": "foamstone",
     "pumpkin": "marrow",
+    "pummel": "pound",
+    "pummelled": "pounded",
     "punch": "clout",
     "punctuation": "tokenmark",
     "punish": "wreak",

@@ -126,7 +126,7 @@ window.onload = function () {
 
             if (word.toLowerCase() == "an" || word.toLowerCase() == "a") {
 
-                if (inputWords[index + 1] != undefined && inputWords[index + 1][0] in vowels) {
+                if (inputWords[index + 1] != undefined && vowels.includes(inputWords[index + 1][0])) {
 
                     inputWords[index] = "an"
 

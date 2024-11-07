@@ -3177,7 +3177,7 @@ var wordbook = {
     "generality": "the whole",
     "generally": "broadly",
     "generate": "make",
-    "generation": "time",
+    "generation": "making",
     "generic": "wide",
     "generous": "kind",
     "generously": "kindly",

@@ -7102,5 +7102,8 @@ var wordbook = {
     "zygomatic bone": "cheekbone",
     "zymolysis": "yeasting",
     "zythology": "beerlore",
+    "citizen": "burger",
+    "neurological":"brainish",
+    "being used on":"being set on",
 
 }

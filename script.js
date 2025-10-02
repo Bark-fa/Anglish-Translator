@@ -26,7 +26,7 @@ window.onload = function () {
         let outputTextSize = 0;
 
 
-        // Split the English text into seperate words based on the space character, and make the text all lowercase.
+        // Split the English text into separate words based on the space character, and make the text all lowercase.
         inputWords = inputWords.split(" ").map(function (f) {
             return f.toLowerCase();
         });
@@ -34,6 +34,7 @@ window.onload = function () {
         textSize = inputWords.length
         // Check if word contains special characters, if so handle them.
         inputWords.forEach((word, index) => {
+            word = word.trim();
 
             if (specialCharacters.test(word)) {
                 let character = word.match(specialCharacters);
@@ -94,6 +95,7 @@ window.onload = function () {
         // Check if an English word has an Anglish translation, if so swap the English word with its Anglish match.
 
         inputWords.forEach((word, index) => {
+            word = word.trim();
             if (translateToAnglish) {
                 // value by key (English->Anglish)
                 if (word in wordbook) {

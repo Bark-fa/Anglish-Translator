@@ -84,12 +84,11 @@ window.onload = function () {
                     inputWords[index] = Object.keys(wordbook).find(key => wordbook[key] === threeWords);
                     inputWords[index + 1] = "";
                     inputWords[index + 2] = "";
-                
+
                 }
 
             }
         });
-
 
 
         // Check if an English word has an Anglish translation, if so swap the English word with its Anglish match.
@@ -100,13 +99,15 @@ window.onload = function () {
                 // value by key (English->Anglish)
                 if (word in wordbook) {
                     inputWords[index] = wordbook[word];
-                } else if (singulariseThenPluralise(word) != undefined && singulariseThenPluralise(word) != "") {
+                } else if (singulariseThenPluralise(word) !== undefined && singulariseThenPluralise(word) !== "") {
+                    inputWords[index] = singulariseThenPluralise(word);
                     console.log(`word in wordbook SINGULAR/PLURAL ${inputWords[index]} ${wordbook[word]}`)
-                } else if (toPresentTenseThenPastTense(word) != undefined) {
+                } else if (toPresentTenseThenPastTense(word) !== undefined) {
+                    inputWords[index] = toPresentTenseThenPastTense(word);
                     console.log(`word in wordbook PRESENT ${inputWords[index]} ${wordbook[word]}`)
-                } else if (presentContinuous(word) != undefined) {
-                    console.log(`word in wordbook PRESENT CONTINUOUS ${inputWords[index]} ${presentContinuous(word)}`)
+                } else if (presentContinuous(word) !== undefined) {
                     inputWords[index] = presentContinuous(word);
+                    console.log(`word in wordbook PRESENT CONTINUOUS ${inputWords[index]} ${presentContinuous(word)}`)
                 } else {
                     inputWords[index] = word
                     outputTextSize++;
@@ -126,9 +127,9 @@ window.onload = function () {
         // Decide if "a" or "an" should be used.
         inputWords.forEach((word, index) => {
 
-            if (word.toLowerCase() == "an" || word.toLowerCase() == "a") {
+            if (word.toLowerCase() === "an" || word.toLowerCase() === "a") {
 
-                if (inputWords[index + 1] != undefined && vowels.includes(inputWords[index + 1][0])) {
+                if (inputWords[index + 1] !== undefined && vowels.includes(inputWords[index + 1][0])) {
 
                     inputWords[index] = "an"
 
@@ -150,7 +151,7 @@ window.onload = function () {
                 word = inputWords[keys[index]];
                 let wordWithCharacters = word;
 
-                if (specialCharactersIndex[keys[index]][0]['index'] == 0) {
+                if (specialCharactersIndex[keys[index]][0]['index'] === 0) {
 
                     wordWithCharacters = [...word];
                     wordWithCharacters[0] = specialCharactersIndex[keys[index]][0][0] + wordWithCharacters[0];
@@ -188,9 +189,9 @@ window.onload = function () {
 
         }
 
-        if(translateToAnglish) {
+        if (translateToAnglish) {
 
-        document.getElementById('percentage').textContent = `The original text was ${percentage}% Germanic English`;
+            document.getElementById('percentage').textContent = `The original text was ${percentage}% Germanic English`;
         }
 
         document.getElementById('percentage').style.color = color;
@@ -199,7 +200,7 @@ window.onload = function () {
 
     swap = function () {
         translateToAnglish = !translateToAnglish;
-    
+
         if (translateToAnglish) {
             translateBtn.value = "Translate to Anglish";
             input.placeholder = "English goes here";
@@ -209,8 +210,8 @@ window.onload = function () {
             input.placeholder = "Anglish goes here";
             output.placeholder = "English translation will show here";
         }
-    
-        
+
+
         let temp = input.value;
         input.value = output.textContent;
         output.textContent = temp;

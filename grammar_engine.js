@@ -1,128 +1,87 @@
+// grammar_engine.js
+
 function singulariseThenPluralise(word) {
+    let base;
+
     if (word.endsWith('ies')) {
-        word = word.substring(0, word.length - 3) + 'y';
-    } else if (word.endsWith('s')) {
-        word = word.substring(0, word.length - 1);
+        base = word.slice(0, -3) + 'y';
     } else if (word.endsWith('es')) {
-        word = word.substring(0, word.length - 2);
-    } else {
-        word = "";
-    }
-
-    if (word != "") {
-        if (word in wordbook) {
-            word = pluralise(wordbook[word]);
-        } else {
-            word = "";
-        }
-    }
-
-    if(word != "") {
-        return word;
+        base = word.slice(0, -2);
+    } else if (word.endsWith('s')) {
+        base = word.slice(0, -1);
     } else {
         return undefined;
     }
+
+    if (base in wordbook) {
+        return pluralise(wordbook[base]);
+    }
+
+    return undefined;
 }
+
 
 function pluralise(word) {
     if (word.endsWith('y')) {
-        word = word.substring(0, word.length - 1) + 'ies';
+        return word.slice(0, -1) + 'ies';
     } else if (!word.endsWith('s')) {
-        word = word + 's';
-    } else {
-        word = "";
+        return word + 's';
     }
-
-    if(word != "") {
-        return word;
-    } else {
-        return undefined;
-    }
+    return undefined;
 }
 
 
 function presentContinuous(word) {
-    if (word.endsWith('ing')) {
-        word = word.substring(0, word.length - 3);
-    } else {
-        // not present continious;
-        return undefined;
+    if (!word.endsWith('ing')) return undefined;
+
+    let base = word.slice(0, -3);
+
+    if (base in wordbook) {
+        return wordbook[base] + "ing";
     }
 
-    if (word != "") {
-        if (word in wordbook) {
-            word = wordbook[word] + "ing";
-            
-        } else {
-            
-            if (word+"e" in wordbook){
-                wordWithoutE = wordbook[word+"e"].substring(0, wordbook[word+"e"].length - 1)
-                word = wordWithoutE + "ing";
-            } else {
-                word = ""
-            }
-        }
+    if ((base + "e") in wordbook) {
+        let withoutE = wordbook[base + "e"].slice(0, -1);
+        return withoutE + "ing";
     }
 
-    if(word != "") {
-        return word;
-    } else {
-        return undefined;
-    }
+    return undefined;
 }
 
 
 function toPastTense(word) {
-    if (!word.endsWith('ed')) {
-        if (word.endsWith('y')) {
-            word[word.length - 1] = 'i';
-        }
-        if(word.endsWith('e')) {
-            word+='d'
-        } else {
-            word+="ed"
+    if (word.endsWith('ed')) return undefined;
 
-        }
+    if (word.endsWith('y') && word.length > 1 && !isVowel(word[word.length - 2])) {
+        return word.slice(0, -1) + 'ied';
+    }
 
-    } else {
-        word = "";
+    if (word.endsWith('e')) {
+        return word + 'd'; //
     }
-    if(word != "") {
-        return word;
-    } else {
-        return undefined;
-    }
+
+    return word + 'ed';
 }
 
+
 function toPresentTenseThenPastTense(word) {
-    originalWord = word;
+    const originalWord = word;
 
-    if (word.endsWith('ed')) {
-        word = word.substring(0, word.length - 2);
-        if (word in wordbook == false) {
-            if (originalWord.endsWith('d')) {
-                word = originalWord.substring(0, originalWord.length - 1);
-            } else {
-                word = "";
-            }
-        }
-    } else {
-        word = "";
+    if (!word.endsWith('ed')) return undefined;
+
+    let base = word.slice(0, -2);
+
+    if (!(base in wordbook) && originalWord.endsWith('d')) {
+        base = originalWord.slice(0, -1);
     }
 
-    if (word != "") {
+    if (!(base in wordbook)) return undefined;
 
-        if (word in wordbook) {
-            word = toPastTense(wordbook[word]);
+    return toPastTense(wordbook[base]);
+}
 
-        } else {
-            word = "";
-        }
-    }
 
-    if(word != "") {
-        return word;
-    } else {
-        return undefined;
-    }
+// helper
+function isVowel(ch) {
+    return 'aeiou'.includes(ch.toLowerCase());
 }

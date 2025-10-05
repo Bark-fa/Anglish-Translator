@@ -172,6 +172,8 @@ window.onload = function () {
             index == 0 ? outputText += word : outputText += " " + word;
         });
 
+        outputText = outputText.replace(/\s{2,}/g, " ");
+
         // Display the translated text.
         anglish.textContent = capitaliseFirstLetter(outputText);
         let percentage = Math.round((outputTextSize / textSize) * 100);
